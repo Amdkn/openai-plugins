@@ -1,0 +1,38 @@
+{
+  "$schema": "aspace.module.contract.v1",
+  "adapter": {
+    "name": "aspace-openai-plugins-adapter",
+    "package": "aspace-openai-plugins-adapter",
+    "version": "0.1.0",
+    "entry": "aspace-openai-plugins-adapter/mock_plugin.py",
+    "seam": "contract-only",
+    "surface": [
+      "python3 aspace-openai-plugins-adapter/mock_plugin.py manifest -> print a minimal valid plugin manifest (JSON, stdout)",
+      "python3 aspace-openai-plugins-adapter/mock_plugin.py validate [path/to/plugin-dir] -> structure check of .codex-plugin/plugin.json (exit 0/2, stdlib only)",
+      "python3 aspace-openai-plugins-adapter/mock_plugin.py env -> telemetry-off environment (no network, no credentials)",
+      "python3 aspace-openai-plugins-adapter/smoke_test.py -> smoke suite (stdlib unittest, offline)"
+    ]
+  },
+  "upstream": {
+    "repository": "openai/plugins",
+    "fork": "Amdkn/openai-plugins",
+    "branch": "main",
+    "frozen_commit": "d420d13051bffe4543ed39e30fa46b87148e47dd",
+    "license": "none (no LICENSE file, GitHub license: null)",
+    "upstream_version": "catalog at gel d420d13 (62 plugins)"
+  },
+  "clean_room": {
+    "regime": "D12 (D-N048) — reference only, clean-room adaptation",
+    "rule": "no upstream file copied; the adapter is written from the public plugin-manifest format only",
+    "proof": "blob-hash comparison against the gel tree (see ADAPTATION.md § Preuve zéro copie)",
+    "fallback": "deletion of the fork (repli suppression nommé, D12)"
+  },
+  "telemetry": {
+    "verdict": "zero by construction — the adapter makes no network call (stdlib only, no socket/urllib), holds no credential, and never starts a plugin MCP server",
+    "audit": "openai-plugins-TELEMETRY-AUDIT.md"
+  },
+  "id": null,
+  "issued_by": "Ryan (Factory), dispatch D-N048 V5, vague V5",
+  "schema_authority": "Clara (design D-N048, D4/D7, variante D12)",
+  "validated_by": "13e Doctor"
+}
